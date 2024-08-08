@@ -1,6 +1,5 @@
-<h1 align="center">🌱 MealWise 🍽️</h1>
 <p align="center">
-  <img src="./web/assets/Logo.svg" width="200" alt="MealWise Logo" />
+  <img src="./web/assets/Logo.svg" width="600" alt="MealWise Logo" />
 </p>
 
   <p align="center">Diet and personal health tracker web application</p>
