@@ -1,10 +1,11 @@
+// user.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './user.service';
-import { UserEntity } from '../../database/user/user.entity';
+import { UserEntity } from '../../database/users/user.entity';
 import { UserController } from './user.controller';
-import { UsersRepository } from '../../database/user/users.repository';
-import { HashModule } from 'src/libs/hash/hash.module';
+import { UsersRepository } from '../../database/users/users.repository';
+import { HashModule } from '../../libs/hash/hash.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity]), HashModule],

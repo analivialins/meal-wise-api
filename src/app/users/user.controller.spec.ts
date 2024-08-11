@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from '../../database/user/user.entity';
+import { UserEntity } from '../../database/users/user.entity';
 
 
 describe('UserController', () => {
@@ -38,10 +38,10 @@ describe('UserController', () => {
             email: 'john.doe@example.com',
             password: 'password123',
             informations: {
-              weight: '70kg',
-              height: '175cm',
-              currentWeight: '70kg',
-              goalWeight: '65kg'
+              weight: '70',
+              height: '175',
+              currentWeight: '70',
+              goalWeight: '65'
             }
           };
           
@@ -61,10 +61,10 @@ describe('UserController', () => {
     it('should update an existing user', async () => {
       const updateData: Partial<CreateUserDto> = {
         informations: {
-          weight: '75kg',
-          height: '180cm',
-          currentWeight: '72kg',
-          goalWeight: '70kg',
+          weight: '75',
+          height: '180',
+          currentWeight: '72',
+          goalWeight: '70',
         },
       };
 

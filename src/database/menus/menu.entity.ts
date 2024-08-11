@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('users')
-export class UserEntity {
+@Entity('menus')
+export class MenuEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -12,19 +12,21 @@ export class UserEntity {
   updated_at: Date;
 
   @Column()
+  type: number;
+
+  @Column()
   name: string;
 
-  @Column({unique:true})
-  email: string;
+  @Column()
+  totalCalories: number;
 
-  @Column({ name: "password", nullable: true, select: false })
-  password: string;
+  @Column('json', { array: true })
+  ingredients: {
+    quantity: number;
+    unity: number;
+    description: string;
+  }[];
 
-  @Column('json')
-  informations: {
-    weight: string;
-    height: string;
-    currentWeight: string;
-    goalWeight: string;
-  };
+  @Column('simple-array')
+  prepares: string[];
 }

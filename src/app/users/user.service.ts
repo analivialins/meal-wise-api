@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../../database/user/user.entity';
+import { UserEntity } from '../../database/users/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { HashService } from 'src/libs/hash/hash.service';
+import { HashService } from '../../libs/hash/hash.service';
 import { InformationsDto } from './dto/informations.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { plainToClass } from 'class-transformer';
