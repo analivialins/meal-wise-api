@@ -38,4 +38,5 @@ export class MenuDto {
   @IsArray()
   @IsString({ each: true })
   prepares: string[];
+
 }

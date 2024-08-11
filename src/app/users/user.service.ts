@@ -52,8 +52,15 @@ export class UserService {
     return plainToClass(UserResponseDto, this.sanitizeUser(user));
   }
 
+  async getUserByEmail(email: string): Promise<UserResponseDto> {
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (!user) {
+      throw new NotFoundException(`User with E-mail ${email} not found`);
+    }
+    return plainToClass(UserResponseDto, this.sanitizeUser(user));
+  }
+
   private sanitizeUser(user: UserEntity): Partial<UserEntity> {
-    // Clone the user entity to avoid modifying the original
     const { password, ...sanitizedUser } = user;
     return sanitizedUser;
   }

@@ -6,6 +6,12 @@ export class UserResponseDto {
   id: string;
 
   @Expose()
+  created_at: Date;
+
+  @Expose()
+  updated_at: Date;
+
+  @Expose()
   name: string;
 
   @Expose()

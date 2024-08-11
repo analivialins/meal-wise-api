@@ -20,7 +20,7 @@ export class MenuEntity {
   @Column()
   totalCalories: number;
 
-  @Column('json', { array: true })
+  @Column('jsonb')
   ingredients: {
     quantity: number;
     unity: number;
@@ -29,4 +29,8 @@ export class MenuEntity {
 
   @Column('simple-array')
   prepares: string[];
+
+  @Column({ nullable: false })
+  user: string;
+  
 }

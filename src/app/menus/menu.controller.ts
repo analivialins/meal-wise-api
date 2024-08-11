@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Put, Param, Get } from '@nestjs/common';
+import { Controller, Post, Body, Req, Put, Param, Get } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { MenuDto } from './dto/menu.dto';
 
@@ -7,8 +7,9 @@ export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Post()
-  async createMenu(@Body() menuDto: MenuDto) {
-    return this.menuService.createMenu(menuDto);
+  async createMenu(@Body() menuDto: MenuDto, @Req() req: any) {
+    const userId = req.user.id;
+    return this.menuService.createMenu(menuDto, userId);
   }
 
   @Put(':id')
@@ -22,7 +23,8 @@ export class MenuController {
   }
 
   @Get()
-  async getAllMenus() {
-    return this.menuService.getAllMenus();
+  async getAllMenus(@Req() req: any) {
+    const userId = req.user.id;
+    return this.menuService.getAllMenus(userId);
   }
 }

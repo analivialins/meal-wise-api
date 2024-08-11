@@ -15,10 +15,8 @@ export class MenusRepository {
     return this.repository.save(menuEntity);
   }
 
-
   async update(id: string, updateData: Partial<MenuEntity>): Promise<MenuEntity | undefined> {
     await this.repository.update(id, updateData);
-
     return this.repository.findOne({
       where: { id: id },
     });
@@ -30,7 +28,9 @@ export class MenusRepository {
     });
   }
 
-  async getAllMenus(): Promise<MenuEntity[]> {
-    return this.repository.find();
+  async getAllMenus(userId: string): Promise<MenuEntity[]> {
+    return this.repository.find({
+      where: { user: userId },
+    });
   }
 }
