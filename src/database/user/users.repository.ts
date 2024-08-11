@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Equal } from 'typeorm';
+import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 @Injectable()
@@ -32,23 +32,13 @@ export class UsersRepository {
     });
   }
 
-  async findByEmail(email: string): Promise<UserEntity> {
+  async findByEmail(email: string): Promise<UserEntity | undefined> {
     return this.repository.findOne({
-        where: { email: email },
-      });
-}
-
-  async getUsersByInformationCriteria(
-    weight: string,
-    height: string,
-  ): Promise<UserEntity[]> {
-    return this.repository.find({
-      where: {
-        informations: {
-          weight: Equal(weight),
-          height: Equal(height),
-        },
-      },
+      where: { email: email },
     });
+  }
+
+  async getAllUsers(): Promise<UserEntity[]> {
+    return this.repository.find();
   }
 }
