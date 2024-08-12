@@ -4,12 +4,12 @@ class  Ingredients {
     description: string;
 }
 
-export class MenuI {
-    type: number; // 0 - brakefast, 1 - lunch, 2 - dinner
+export class RecipesI {
     name: string;
     totalCalories: number;
     ingredients: Ingredients[];
     prepares: string[];
+    cover: number;
 }
 
 

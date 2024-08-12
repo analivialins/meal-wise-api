@@ -9,7 +9,7 @@ import { UserModule } from './app/users/user.module';
 import { AuthorizationModule } from './app/authorization/authorization.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MenuModule } from './app/menus/menu.module';
+import { RecipeModule } from './app/recipes/recipe.module';
 
 @Module({
   imports: [
@@ -40,7 +40,7 @@ import { MenuModule } from './app/menus/menu.module';
       },
     }),
     UserModule, 
-    MenuModule,
+    RecipeModule,
     AuthorizationModule,
   ],
   controllers: [AppController],

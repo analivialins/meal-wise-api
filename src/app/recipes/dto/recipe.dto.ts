@@ -13,7 +13,7 @@ class IngredientDto {
     description: string;
   }
 
-export class MenuDto {
+export class RecipeDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -21,8 +21,7 @@ export class MenuDto {
 
   @ApiProperty()
   @IsNumber()
-  @IsNotEmpty()
-  type: number;
+  cover: number;
 
   @ApiProperty()
   @IsNumber()

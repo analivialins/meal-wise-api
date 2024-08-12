@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity('menus')
-export class MenuEntity {
+@Entity('recipes')
+export class RecipesEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -12,13 +12,13 @@ export class MenuEntity {
   updated_at: Date;
 
   @Column()
-  type: number;
-
-  @Column()
   name: string;
 
   @Column()
   totalCalories: number;
+
+  @Column()
+  cover: number;
 
   @Column('jsonb')
   ingredients: {
