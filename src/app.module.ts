@@ -10,6 +10,7 @@ import { AuthorizationModule } from './app/authorization/authorization.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecipeModule } from './app/recipes/recipe.module';
+import { MenuModule } from './app/menus/menu.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { RecipeModule } from './app/recipes/recipe.module';
     }),
     UserModule, 
     RecipeModule,
+    MenuModule,
     AuthorizationModule,
   ],
   controllers: [AppController],
