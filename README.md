@@ -61,5 +61,5 @@ $ npm run test:cov
 - Design Link 🚧 - [Figma](https://www.figma.com/design/wXIf1CEiscRYdnATkktbEB/Untitled?node-id=1-21&t=MRoSUlzn5bSxJwoj-1)
 
 
-## Made by
+## Made with ❤️ by
 - Author - [Ana Lívia Lins](https://www.linkedin.com/in/analivialins/) 💖
