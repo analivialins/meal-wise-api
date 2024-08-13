@@ -56,7 +56,7 @@ $ npm run test:cov
 
 ## Access the links project
 
-- Web Repository - [MealWise API](https://github.com/analivialins/meal-wise-spa)
+- Web Repository - [MealWise Spa](https://github.com/analivialins/meal-wise-spa)
 - Mobile Repository  🚧 - Coming Soon...
 - Design Link 🚧 - [Figma](https://www.figma.com/design/wXIf1CEiscRYdnATkktbEB/Untitled?node-id=1-21&t=MRoSUlzn5bSxJwoj-1)
 
