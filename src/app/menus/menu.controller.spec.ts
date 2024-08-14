@@ -35,8 +35,13 @@ describe('MenuController', () => {
   describe('createMenu', () => {
     it('should create a new menu', async () => {
       const menuDto: MenuDto = {
-        type: 1,
-        recipe: 'recipe-id',
+        sunday: { type: 0, recipe: 'sunday-recipe-id' },
+        monday: { type: 1, recipe: 'monday-recipe-id' },
+        tuesday: { type: 1, recipe: 'tuesday-recipe-id' },
+        wednesday: { type: 1, recipe: 'wednesday-recipe-id' },
+        thursday: { type: 2, recipe: 'thursday-recipe-id' },
+        friday: { type: 2, recipe: 'friday-recipe-id' },
+        saturday: { type: 0, recipe: 'saturday-recipe-id' },
       };
 
       const result: MenusEntity = {
@@ -44,12 +49,14 @@ describe('MenuController', () => {
         created_at: new Date(),
         updated_at: new Date(),
         user: 'user-id',
-        ...menuDto,
+        meals: menuDto,
       };
 
       jest.spyOn(menuService, 'createMenu').mockResolvedValue(result);
 
-      expect(await menuController.createMenu(menuDto, { user: { id: 'user-id' } })).toBe(result);
+      const req = { user: { id: 'user-id' } } as any;
+
+      expect(await menuController.createMenu(menuDto, req)).toBe(result);
     });
   });
 
@@ -57,8 +64,13 @@ describe('MenuController', () => {
     it('should update an existing menu', async () => {
       const id = '1';
       const menuDto: MenuDto = {
-        type: 2,
-        recipe: 'updated-recipe-id',
+        sunday: { type: 0, recipe: 'updated-sunday-recipe-id' },
+        monday: { type: 1, recipe: 'updated-monday-recipe-id' },
+        tuesday: { type: 1, recipe: 'updated-tuesday-recipe-id' },
+        wednesday: { type: 1, recipe: 'updated-wednesday-recipe-id' },
+        thursday: { type: 2, recipe: 'updated-thursday-recipe-id' },
+        friday: { type: 2, recipe: 'updated-friday-recipe-id' },
+        saturday: { type: 0, recipe: 'updated-saturday-recipe-id' },
       };
 
       const result: MenusEntity = {
@@ -66,12 +78,14 @@ describe('MenuController', () => {
         created_at: new Date(),
         updated_at: new Date(),
         user: 'user-id',
-        ...menuDto,
+        meals: menuDto,
       };
 
       jest.spyOn(menuService, 'updateMenu').mockResolvedValue(result);
 
-      expect(await menuController.updateMenu(id, menuDto)).toBe(result);
+      const req = { user: { id: 'user-id' } } as any;
+
+      expect(await menuController.updateMenu(id, menuDto, req)).toBe(result);
     });
   });
 
@@ -81,7 +95,9 @@ describe('MenuController', () => {
 
       jest.spyOn(menuService, 'deleteMenu').mockResolvedValue();
 
-      expect(await menuController.deleteMenu(id)).toEqual({ message: 'Menu deleted successfully' });
+      const req = { user: { id: 'user-id' } } as any; 
+
+      expect(await menuController.deleteMenu(id, req)).toEqual({ message: 'Menu deleted successfully' });
     });
   });
 
@@ -93,14 +109,23 @@ describe('MenuController', () => {
           created_at: new Date(),
           updated_at: new Date(),
           user: 'user-id',
-          type: 1,
-          recipe: 'recipe-id',
+          meals: {
+            sunday: { type: 0, recipe: 'sunday-recipe-id' },
+            monday: { type: 1, recipe: 'monday-recipe-id' },
+            tuesday: { type: 1, recipe: 'tuesday-recipe-id' },
+            wednesday: { type: 1, recipe: 'wednesday-recipe-id' },
+            thursday: { type: 2, recipe: 'thursday-recipe-id' },
+            friday: { type: 2, recipe: 'friday-recipe-id' },
+            saturday: { type: 0, recipe: 'saturday-recipe-id' },
+          },
         },
       ];
 
       jest.spyOn(menuService, 'getAllMenus').mockResolvedValue(result);
 
-      expect(await menuController.getAllMenus({ user: { id: 'user-id' } })).toBe(result);
+      const req = { user: { id: 'user-id' } } as any; 
+
+      expect(await menuController.getAllMenus(req)).toBe(result);
     });
   });
 });

@@ -27,6 +27,8 @@ export class RecipeService {
   async getRecipeById(id: string): Promise<RecipesEntity | undefined> {
     return this.recipesRepository.getRecipeById(id);
   }
+
+  
 }
 
 export default RecipeService;

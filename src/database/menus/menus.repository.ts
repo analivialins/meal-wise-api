@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MenusEntity } from './menus.entity';
@@ -15,15 +15,22 @@ export class MenusRepository {
     return this.repository.save(menuEntity);
   }
 
-  async update(id: string, updateData: Partial<MenusEntity>): Promise<MenusEntity | undefined> {
+  async update(id: string, updateData: Partial<MenusEntity>): Promise<MenusEntity> {
     await this.repository.update(id, updateData);
-    return this.repository.findOne({
-      where: { id: id },
-    });
+    const updatedMenu = await this.repository.findOne({ where: { id } });
+    
+    if (!updatedMenu) {
+      throw new NotFoundException(`Menu with ID ${id} not found`);
+    }
+    
+    return updatedMenu;
   }
 
   async delete(id: string): Promise<void> {
-    await this.repository.delete(id);
+    const result = await this.repository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Menu with ID ${id} not found`);
+    }
   }
 
   async getAllMenus(userId: string): Promise<MenusEntity[]> {

@@ -1,8 +1,13 @@
 export class MenusI {
-    type: number; // 0 - Breakfast, 1 - Lunch, 2 - Dinner
+    id: string;
     user: string;
-    recipe: string;
+    meals: {
+        sunday: { type: number; recipe: string };
+        monday: { type: number; recipe: string };
+        tuesday: { type: number; recipe: string };
+        wednesday: { type: number; recipe: string };
+        thursday: { type: number; recipe: string };
+        friday: { type: number; recipe: string };
+        saturday: { type: number; recipe: string };
+    };
 }
-
-
-  
