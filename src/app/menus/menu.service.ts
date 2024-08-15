@@ -26,8 +26,6 @@ export class MenuService {
       user: userId,
     };
     
-    console.log('Creating Menu Entity:', menuEntity);
-    
     return this.menusRepository.create(menuEntity as MenusEntity);
   }
   
