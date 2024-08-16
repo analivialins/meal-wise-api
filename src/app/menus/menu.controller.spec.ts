@@ -35,13 +35,27 @@ describe('MenuController', () => {
   describe('createMenu', () => {
     it('should create a new menu', async () => {
       const menuDto: MenuDto = {
-        sunday: { type: 0, recipe: 'sunday-recipe-id' },
-        monday: { type: 1, recipe: 'monday-recipe-id' },
-        tuesday: { type: 1, recipe: 'tuesday-recipe-id' },
-        wednesday: { type: 1, recipe: 'wednesday-recipe-id' },
-        thursday: { type: 2, recipe: 'thursday-recipe-id' },
-        friday: { type: 2, recipe: 'friday-recipe-id' },
-        saturday: { type: 0, recipe: 'saturday-recipe-id' },
+        sunday: [
+          { type: 0, recipe: 'sunday-recipe-id' }
+        ],
+        monday: [
+          { type: 1, recipe: 'monday-recipe-id' }
+        ],
+        tuesday: [
+          { type: 1, recipe: 'tuesday-recipe-id' }
+        ],
+        wednesday: [
+          { type: 1, recipe: 'wednesday-recipe-id' }
+        ],
+        thursday: [
+          { type: 2, recipe: 'thursday-recipe-id' }
+        ],
+        friday: [
+          { type: 2, recipe: 'friday-recipe-id' }
+        ],
+        saturday: [
+          { type: 0, recipe: 'saturday-recipe-id' }
+        ],
       };
 
       const result: MenusEntity = {
@@ -64,13 +78,27 @@ describe('MenuController', () => {
     it('should update an existing menu', async () => {
       const id = '1';
       const menuDto: MenuDto = {
-        sunday: { type: 0, recipe: 'updated-sunday-recipe-id' },
-        monday: { type: 1, recipe: 'updated-monday-recipe-id' },
-        tuesday: { type: 1, recipe: 'updated-tuesday-recipe-id' },
-        wednesday: { type: 1, recipe: 'updated-wednesday-recipe-id' },
-        thursday: { type: 2, recipe: 'updated-thursday-recipe-id' },
-        friday: { type: 2, recipe: 'updated-friday-recipe-id' },
-        saturday: { type: 0, recipe: 'updated-saturday-recipe-id' },
+        sunday: [
+          { type: 0, recipe: 'updated-sunday-recipe-id' }
+        ],
+        monday: [
+          { type: 1, recipe: 'updated-monday-recipe-id' }
+        ],
+        tuesday: [
+          { type: 1, recipe: 'updated-tuesday-recipe-id' }
+        ],
+        wednesday: [
+          { type: 1, recipe: 'updated-wednesday-recipe-id' }
+        ],
+        thursday: [
+          { type: 2, recipe: 'updated-thursday-recipe-id' }
+        ],
+        friday: [
+          { type: 2, recipe: 'updated-friday-recipe-id' }
+        ],
+        saturday: [
+          { type: 0, recipe: 'updated-saturday-recipe-id' }
+        ],
       };
 
       const result: MenusEntity = {
@@ -102,24 +130,36 @@ describe('MenuController', () => {
   });
 
   describe('getAllMenus', () => {
-    it('should return an array of menus', async () => {
-      const result: MenusEntity[] = [
-        {
-          id: '1',
-          created_at: new Date(),
-          updated_at: new Date(),
-          user: 'user-id',
-          meals: {
-            sunday: { type: 0, recipe: 'sunday-recipe-id' },
-            monday: { type: 1, recipe: 'monday-recipe-id' },
-            tuesday: { type: 1, recipe: 'tuesday-recipe-id' },
-            wednesday: { type: 1, recipe: 'wednesday-recipe-id' },
-            thursday: { type: 2, recipe: 'thursday-recipe-id' },
-            friday: { type: 2, recipe: 'friday-recipe-id' },
-            saturday: { type: 0, recipe: 'saturday-recipe-id' },
-          },
+    it('should return a menu', async () => {
+      const result: MenusEntity = {
+        id: '1',
+        created_at: new Date(),
+        updated_at: new Date(),
+        user: 'user-id',
+        meals: {
+          sunday: [
+            { type: 0, recipe: 'sunday-recipe-id' }
+          ],
+          monday: [
+            { type: 1, recipe: 'monday-recipe-id' }
+          ],
+          tuesday: [
+            { type: 1, recipe: 'tuesday-recipe-id' }
+          ],
+          wednesday: [
+            { type: 1, recipe: 'wednesday-recipe-id' }
+          ],
+          thursday: [
+            { type: 2, recipe: 'thursday-recipe-id' }
+          ],
+          friday: [
+            { type: 2, recipe: 'friday-recipe-id' }
+          ],
+          saturday: [
+            { type: 0, recipe: 'saturday-recipe-id' }
+          ],
         },
-      ];
+      };
 
       jest.spyOn(menuService, 'getAllMenus').mockResolvedValue(result);
 

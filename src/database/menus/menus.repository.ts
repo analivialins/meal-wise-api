@@ -33,9 +33,15 @@ export class MenusRepository {
     }
   }
 
-  async getAllMenus(userId: string): Promise<MenusEntity[]> {
-    return this.repository.find({
+  async getAllMenus(userId: string): Promise<MenusEntity | null> {
+    const menu = await this.repository.findOne({
       where: { user: userId },
     });
+  
+    if (!menu) {
+      throw new Error('Menu not found');
+    }
+  
+    return menu;
   }
 }

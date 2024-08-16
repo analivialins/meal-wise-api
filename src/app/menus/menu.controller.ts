@@ -28,7 +28,7 @@ export class MenuController {
   }
 
   @Get()
-  async getAllMenus(@Req() req: CustomRequest): Promise<MenusEntity[]> {
+  async getAllMenus(@Req() req: CustomRequest): Promise<MenusEntity> {
     const userId = req.user.id;
     return this.menuService.getAllMenus(userId);
   }

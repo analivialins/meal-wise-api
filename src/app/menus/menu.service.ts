@@ -25,51 +25,56 @@ export class MenuService {
       },
       user: userId,
     };
-    
+
     return this.menusRepository.create(menuEntity as MenusEntity);
   }
-  
 
   async updateMenu(id: string, menuDto: MenuDto, userId: string): Promise<MenusEntity | undefined> {
     const menuEntity: Partial<MenusEntity> = {
-      ...menuDto,
+      meals: {
+        sunday: menuDto.sunday,
+        monday: menuDto.monday,
+        tuesday: menuDto.tuesday,
+        wednesday: menuDto.wednesday,
+        thursday: menuDto.thursday,
+        friday: menuDto.friday,
+        saturday: menuDto.saturday,
+      },
       user: userId,
     };
 
-    return this.menusRepository.update(id, menuEntity);
+    return this.menusRepository.update(id, menuEntity as MenusEntity);
   }
 
   async deleteMenu(id: string, userId: string): Promise<void> {
     await this.menusRepository.delete(id);
   }
 
-  async getAllMenus(userId: string): Promise<MenusEntity[]> {
-    const menus = await this.menusRepository.getAllMenus(userId);
-    const menuWithRecipes = [];
+  async getAllMenus(userId: string): Promise<MenusEntity> {
+    const menu = await this.menusRepository.getAllMenus(userId);
+    const updatedMenu = { ...menu };
 
-    for (const menu of menus) {
-      const updatedMenu = { ...menu };
-
-      for (const day in updatedMenu.meals) {
+    for (const day in updatedMenu.meals) {
         if (updatedMenu.meals.hasOwnProperty(day)) {
-          const meal = updatedMenu.meals[day];
-          const recipeEntity = await this.recipesService.getRecipeById(meal.recipe);
-          if (recipeEntity) {
-            const recipeDto: RecipeDto = {
-              name: recipeEntity.name,
-              cover: recipeEntity.cover,
-              totalCalories: recipeEntity.totalCalories,
-              ingredients: recipeEntity.ingredients,
-              prepares: recipeEntity.prepares,
-            };
-            meal.recipe = recipeDto;
-          }
+            const meals = updatedMenu.meals[day];
+            for (const meal of meals) {
+                const recipeEntity = await this.recipesService.getRecipeById(meal.recipe);
+                if (recipeEntity) {
+                    const recipeDto: RecipeDto = {
+                        name: recipeEntity.name,
+                        cover: recipeEntity.cover,
+                        totalCalories: recipeEntity.totalCalories,
+                        ingredients: recipeEntity.ingredients,
+                        prepares: recipeEntity.prepares,
+                    };
+                    meal.recipe = recipeDto;
+                }
+            }
         }
-      }
-
-      menuWithRecipes.push(updatedMenu);
     }
 
-    return menuWithRecipes;
-  }
+    return updatedMenu;
+}
+
+
 }

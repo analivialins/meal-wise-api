@@ -1,4 +1,4 @@
-import { IsObject, IsOptional } from 'class-validator';
+import { IsArray, IsObject, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { RecipeDto } from 'src/app/recipes/dto/recipe.dto';
 
@@ -11,31 +11,38 @@ class MealDto {
 }
 
 export class MenuDto {
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  sunday?: MealDto;
+  @IsArray()
+  sunday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  monday?: MealDto;
+  @IsArray()
+  monday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  tuesday?: MealDto;
+  @IsArray()
+  tuesday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  wednesday?: MealDto;
+  @IsArray()
+  wednesday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  thursday?: MealDto;
+  @IsArray()
+  thursday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  friday?: MealDto;
+  @IsArray()
+  friday?: MealDto[];
 
-  @ApiProperty({ type: MealDto, required: false })
+  @ApiProperty({ type: [MealDto], required: false })
   @IsOptional()
-  saturday?: MealDto;
+  @IsArray()
+  saturday?: MealDto[];
 }
