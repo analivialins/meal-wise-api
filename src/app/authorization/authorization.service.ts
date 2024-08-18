@@ -18,7 +18,7 @@ export class AuthorizationService {
     if (!userEntity) {
       return null;
     }
-    
+
     const isMatch = await this.hashService.verifyPassword(authorizationDto.password, userEntity.password);
     if (isMatch) {
       return await this.usersRepository.getUserById(userEntity.id);
@@ -26,15 +26,16 @@ export class AuthorizationService {
     return null;
   }
 
-  async login(user: UserI): Promise<{ access_token: string; name: string }> {
+  async login(user: UserI): Promise<{ access_token: string; name: string; informations: any }> {
     const payload = { id: user.id };
     return {
       access_token: this.jwtService.sign(payload),
       name: user.name,
+      informations: user.informations,
     };
   }
 
-  async authorization(authorizationDto: AuthorizationDto): Promise<{ access_token: string; name: string }> {
+  async authorization(authorizationDto: AuthorizationDto): Promise<{ access_token: string; name: string; informations: any }> {
     const user = await this.validateUser(authorizationDto);
     if (!user) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);

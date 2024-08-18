@@ -1,8 +1,9 @@
-import { Controller, Post, Body, Put, Param, Get } from '@nestjs/common';
+import { Controller, Post, Body, Put, Param, Get, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InformationsDto } from './dto/informations.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { Request } from 'express';
 
 @Controller('users')
 export class UserController {
@@ -13,12 +14,16 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
-  @Put('/informations/:id')
+  @Put('/informations')
   async updateUserInformation(
-    @Param('id') id: string,
-    @Body() informationsDto: InformationsDto
+    @Body() informationsDto: InformationsDto,
+    @Req() req: any
   ): Promise<void> {
-    await this.userService.updateUserInformations(id, informationsDto);
+    const userId = req.user?.id;
+    if (!userId) {
+      throw new Error('User ID not found');
+    }
+    await this.userService.updateUserInformations(userId, informationsDto);
   }
 
   @Put(':id')
