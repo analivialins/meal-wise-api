@@ -11,31 +11,36 @@ class IngredientDto {
   
     @IsString()
     description: string;
-  }
+}
 
 export class RecipeDto {
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  name: string;
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id: string;
 
-  @ApiProperty()
-  @IsNumber()
-  cover: number;
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    name: string;
 
-  @ApiProperty()
-  @IsNumber()
-  @IsNotEmpty()
-  totalCalories: number;
+    @ApiProperty()
+    @IsNumber()
+    cover: number;
 
-  @ApiProperty({ type: [IngredientDto] })
-  @ValidateNested({ each: true })
-  @Type(() => IngredientDto)
-  ingredients: IngredientDto[];
+    @ApiProperty()
+    @IsNumber()
+    @IsNotEmpty()
+    totalCalories: number;
 
-  @ApiProperty({ type: [String] })
-  @IsArray()
-  @IsString({ each: true })
-  prepares: string[];
+    @ApiProperty({ type: [IngredientDto] })
+    @ValidateNested({ each: true })
+    @Type(() => IngredientDto)
+    ingredients: IngredientDto[];
+
+    @ApiProperty({ type: [String] })
+    @IsArray()
+    @IsString({ each: true })
+    prepares: string[];
 
 }

@@ -61,6 +61,7 @@ export class MenuService {
                 const recipeEntity = await this.recipesService.getRecipeById(meal.recipe);
                 if (recipeEntity) {
                     const recipeDto: RecipeDto = {
+                        id: recipeEntity.id,
                         name: recipeEntity.name,
                         cover: recipeEntity.cover,
                         totalCalories: recipeEntity.totalCalories,
